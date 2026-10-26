@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="60%" stop-color="#2a1206"/>
+      <stop offset="100%" stop-color="#140803"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background with Moroccan arch border -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGrad)"/>
+  <rect x="16" y="16" width="480" height="480" rx="84" fill="none" stroke="url(#goldGrad)" stroke-width="8"/>
+  <rect x="28" y="28" width="456" height="456" rx="72" fill="none" stroke="#78350f" stroke-width="3"/>
+
+  <!-- Moroccan 8-point geometric star behind cards -->
+  <g transform="translate(256, 210) scale(1.6)" opacity="0.35">
+    <path d="M 0 -60 L 18 -18 L 60 0 L 18 18 L 0 60 L -18 18 L -60 0 L -18 -18 Z" fill="#f59e0b"/>
+    <path d="M 0 -60 L 18 -18 L 60 0 L 18 18 L 0 60 L -18 18 L -60 0 L -18 -18 Z" fill="#eab308" transform="rotate(45)"/>
+  </g>
+
+  <!-- Left Card: Ace of Cups (كاس) -->
+  <g transform="translate(145, 120) rotate(-14)" filter="url(#shadow)">
+    <rect width="140" height="210" rx="12" fill="#faf6ed" stroke="#1e293b" stroke-width="4"/>
+    <rect x="8" y="8" width="124" height="194" rx="8" fill="none" stroke="#94a3b8" stroke-width="2"/>
+    <text x="20" y="32" font-family="sans-serif" font-weight="900" font-size="20" fill="#1e293b">1</text>
+    <!-- Chalice Art -->
+    <path d="M 45 130 C 45 155, 95 155, 95 130 Z" fill="#f59e0b" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="70" cy="130" rx="25" ry="8" fill="#ef4444"/>
+    <rect x="64" y="145" width="12" height="25" fill="#f59e0b"/>
+    <ellipse cx="70" cy="170" rx="22" ry="6" fill="#1d4ed8"/>
+  </g>
+
+  <!-- Right Card: King of Swords / Oros -->
+  <g transform="translate(230, 120) rotate(12)" filter="url(#shadow)">
+    <rect width="140" height="210" rx="12" fill="#faf6ed" stroke="#1e293b" stroke-width="4"/>
+    <rect x="8" y="8" width="124" height="194" rx="8" fill="none" stroke="#94a3b8" stroke-width="2"/>
+    <text x="20" y="32" font-family="sans-serif" font-weight="900" font-size="20" fill="#1e293b">12</text>
+    <!-- King Crown & Sun Coin -->
+    <circle cx="70" cy="115" r="34" fill="#f59e0b" stroke="#92400e" stroke-width="3"/>
+    <circle cx="70" cy="115" r="24" fill="#fef08a"/>
+    <path d="M 52 80 L 52 70 L 61 76 L 70 66 L 79 76 L 88 70 L 88 80 Z" fill="#eab308" stroke="#78350f" stroke-width="2"/>
+  </g>
+
+  <!-- Title Ribbon: روندا 3D -->
+  <g transform="translate(256, 400)">
+    <rect x="-170" y="-38" width="340" height="66" rx="22" fill="#451a03" stroke="url(#goldGrad)" stroke-width="4" filter="url(#shadow)"/>
+    <text x="0" y="8" font-family="'Changa', 'Tajawal', sans-serif" font-weight="900" font-size="36" fill="#fef08a" text-anchor="middle">
+      روندا 3D
+    </text>
+  </g>
+</svg>

@@ -41,6 +41,7 @@ interface MainGameMenuProps {
   onToggleSound: () => void;
   radioEnabled: boolean;
   onToggleRadio: () => void;
+  onOpenApkModal: () => void;
 }
 
 export const MainGameMenu: React.FC<MainGameMenuProps> = ({
@@ -68,6 +69,7 @@ export const MainGameMenu: React.FC<MainGameMenuProps> = ({
   onToggleSound,
   radioEnabled,
   onToggleRadio,
+  onOpenApkModal,
 }) => {
   const [optionsOpen, setOptionsOpen] = useState(false);
 
@@ -84,32 +86,42 @@ export const MainGameMenu: React.FC<MainGameMenuProps> = ({
 
   return (
     <div className="relative w-full h-full flex flex-col justify-between p-3 select-none overflow-y-auto max-w-md mx-auto">
-      {/* Top Header Bar matching screenshot 4 */}
-      <div className="flex items-center justify-between gap-2 pt-1 pb-2">
+      {/* Top Header Bar */}
+      <div className="flex items-center justify-between gap-1.5 pt-1 pb-2">
         {/* Player Profile & City */}
         <button
           onClick={onOpenCityModal}
-          className="flex items-center gap-2 bg-[#27170e]/95 px-3 py-1.5 rounded-full border border-amber-600/80 shadow hover:border-yellow-400 active:scale-95 transition-all"
+          className="flex items-center gap-2 bg-[#27170e]/95 px-2.5 py-1.5 rounded-full border border-amber-600/80 shadow hover:border-yellow-400 active:scale-95 transition-all"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 border border-yellow-200 flex items-center justify-center font-bold text-xs text-[#27170e]">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 border border-yellow-200 flex items-center justify-center font-bold text-xs text-[#27170e]">
             👤
           </div>
           <div className="text-right">
-            <div className="font-extrabold text-xs text-amber-100 font-mono leading-none">{playerName}</div>
-            <div className="text-[10px] text-yellow-400 mt-0.5">
+            <div className="font-extrabold text-[11px] text-amber-100 font-mono leading-none">{playerName}</div>
+            <div className="text-[9px] text-yellow-400 mt-0.5">
               {playerCity ? `🇲🇦 ${playerCity}` : 'الشخصية ديالي'}
             </div>
           </div>
         </button>
 
+        {/* APK / Install Button */}
+        <button
+          onClick={onOpenApkModal}
+          className="flex items-center gap-1 bg-gradient-to-r from-emerald-700 to-teal-800 px-2.5 py-1.5 rounded-full border border-emerald-400/90 shadow hover:scale-105 active:scale-95 transition-all text-emerald-100"
+          title="تحويل وتثبيت اللعبة كتطبيق APK"
+        >
+          <span className="text-xs">📲</span>
+          <span className="font-black text-[11px] tracking-wide">تطبيق APK</span>
+        </button>
+
         {/* Moroccan Flag & Language */}
-        <div className="flex items-center gap-1.5 bg-[#27170e]/95 px-3 py-1.5 rounded-full border border-amber-600/80 shadow">
-          <span className="text-base">🇲🇦</span>
-          <span className="font-bold text-xs text-amber-200">الدارجة</span>
+        <div className="flex items-center gap-1 bg-[#27170e]/95 px-2 py-1.5 rounded-full border border-amber-600/80 shadow">
+          <span className="text-sm">🇲🇦</span>
+          <span className="font-bold text-[11px] text-amber-200">الدارجة</span>
         </div>
 
         {/* Controls: Audio, Radio & Settings */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           <button
             onClick={onToggleRadio}
             className={`w-9 h-9 rounded-full flex items-center justify-center border shadow transition-all ${

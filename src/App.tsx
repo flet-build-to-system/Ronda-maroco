@@ -10,6 +10,7 @@ import { CityModal } from './components/CityModal';
 import { SettingsModal } from './components/SettingsModal';
 import { RulesModal } from './components/RulesModal';
 import { LocationsModal } from './components/LocationsModal';
+import { ApkExportModal } from './components/ApkExportModal';
 import { RondaGame, TurnActionFeedback } from './game/rondaEngine';
 import { CardBackStyle, CafeCupStyle, GameLocation, GameOptions, GameMode } from './types/cards';
 import { soundManager } from './utils/audio';
@@ -56,6 +57,7 @@ export default function App() {
   const [showRules, setShowRules] = useState<boolean>(false);
   const [rulesInitialTab, setRulesInitialTab] = useState<'ronda' | 'dama' | 'hez_jouj'>('ronda');
   const [showLocations, setShowLocations] = useState<boolean>(false);
+  const [showApkModal, setShowApkModal] = useState<boolean>(false);
 
   // Audio Toggles
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
@@ -210,6 +212,7 @@ export default function App() {
           onToggleSound={toggleSound}
           radioEnabled={radioEnabled}
           onToggleRadio={toggleRadio}
+          onOpenApkModal={() => setShowApkModal(true)}
         />
       )}
 
@@ -355,6 +358,10 @@ export default function App() {
           }}
           onClose={() => setShowLocations(false)}
         />
+      )}
+
+      {showApkModal && (
+        <ApkExportModal onClose={() => setShowApkModal(false)} />
       )}
     </div>
   );
