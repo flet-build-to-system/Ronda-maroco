@@ -1,0 +1,86 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'نوع البناء (Build Type)'
+        required: true
+        default: 'debug'
+        type: choice
+        options:
+          - debug
+          - release
+
+jobs:
+  build:
+    name: 🔨 Build Ronda 3D APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 استخراج الكود (Checkout Code)
+        uses: actions/checkout@v4
+
+      - name: 🟢 تثبيت بيئة Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 تثبيت الحزم (Install Dependencies)
+        run: npm install
+
+      - name: 🏗️ بناء اللعبة للويب (Build Web Game)
+        run: npm run build
+
+      - name: 🔄 مزامنة الكود مع نظام أندرويد (Capacitor Sync)
+        run: npx cap sync android
+
+      - name: ☕ تثبيت Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: 📱 تثبيت أدوات Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🔑 إعطاء صلاحية تشغيل لـ Gradle
+        run: chmod +x android/gradlew
+
+      - name: 🚀 بناء ملف APK (Assemble APK)
+        run: |
+          cd android
+          if [ "${{ github.event.inputs.build_type }}" = "release" ]; then
+            ./gradlew assembleRelease --stacktrace
+          else
+            ./gradlew assembleDebug --stacktrace
+          fi
+
+      - name: 📤 رفع ملف الـ APK كـ Artifact للتحميل المباشر
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ronda-3D-Moroccan-Game-APK
+          path: |
+            android/app/build/outputs/apk/debug/*.apk
+            android/app/build/outputs/apk/release/*.apk
+          retention-days: 30
+
+      - name: 🌟 إنشاء إصدار GitHub Release عند وجود Tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            android/app/build/outputs/apk/debug/*.apk
+            android/app/build/outputs/apk/release/*.apk
+          name: إصدار لعبة روندا 3D ${{ github.ref_name }}
+          body: |
+            🎉 تم بناء ملف APK للعبة **روندا 3D - قهوة مغربية** بنجاح بواسطة GitHub Actions!
+            حمل الملف وثبته مباشرة على هاتفك الأندرويد واستمتع باللعب.
+          draft: false
+          prerelease: false

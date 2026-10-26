@@ -1,0 +1,14 @@
+{
+  "appId": "com.yamano.ronda3d",
+  "appName": "روندا 3D",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#120a05",
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": true
+  }
+}

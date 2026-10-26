@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">روندا 3D</string>
+    <string name="title_activity_main">روندا 3D</string>
+    <string name="package_name">com.yamano.ronda3d</string>
+    <string name="custom_url_scheme">com.yamano.ronda3d</string>
+</resources>
