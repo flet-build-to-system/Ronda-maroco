@@ -1,0 +1,6 @@
+{
+  "name": "Ronda 3D - قهوة مغربية",
+  "description": "لعبة روندا 3D المغربية الشعبية في أجواء القهوة التقليدية، مع لعبة الضامة مع الحاج براهيم ولعبة جبن كرع (هز جوج).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
